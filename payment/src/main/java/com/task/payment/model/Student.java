@@ -1,8 +1,10 @@
 package com.task.payment.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
+
 @Entity
 
 public class Student {
@@ -11,7 +13,7 @@ public class Student {
     private Long studentId;
 
     private Double balance;
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "students")
     private List<Parent> assignedParents;
 

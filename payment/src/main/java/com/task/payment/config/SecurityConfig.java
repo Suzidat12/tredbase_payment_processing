@@ -1,5 +1,6 @@
 package com.task.payment.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -12,11 +13,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    @Value("${app.security.user.username}")
+    private String username;
+
+    @Value("${app.security.user.password}")
+    private String password;
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
@@ -31,8 +36,8 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails admin = User.builder()
-                .username("admin")
-                .password(new BCryptPasswordEncoder().encode("admin123"))
+                .username(username)
+                .password(new BCryptPasswordEncoder().encode(password))
                 .roles("ADMIN")
                 .build();
         return new InMemoryUserDetailsManager(admin);

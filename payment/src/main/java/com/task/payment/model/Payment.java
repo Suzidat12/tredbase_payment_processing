@@ -15,6 +15,7 @@ public class Payment {
     private Long parentId;
     private Long studentId;
     private Double paymentAmount;
+    private Double processingFee;
     private Double adjustedAmount;
     private Double dynamicRate;
     private Timestamp paymentDate;
@@ -69,6 +70,14 @@ public class Payment {
 
     public Timestamp getPaymentDate() {
         return paymentDate;
+    }
+
+    public Double getProcessingFee() {
+        return processingFee;
+    }
+
+    public void setProcessingFee(Double processingFee) {
+        this.processingFee = processingFee;
     }
 
     public void setPaymentDate(Timestamp paymentDate) {

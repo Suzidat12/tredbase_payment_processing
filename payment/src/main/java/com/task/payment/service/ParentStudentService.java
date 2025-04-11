@@ -35,7 +35,6 @@ public class ParentStudentService {
         studentRepository.save(student2);
         studentRepository.save(student3);
 
-// Create Parents
         Parent parentA = new Parent();
         parentA.setBalance(1000.0);
 
@@ -44,8 +43,6 @@ public class ParentStudentService {
 
         parentRepository.save(parentA);
         parentRepository.save(parentB);
-
-        // Associate Parents with Students (Shared and Unique)
         parentA.setStudents(List.of(student1, student2));
         parentB.setStudents(List.of(student1, student3));
 
@@ -57,5 +54,6 @@ public class ParentStudentService {
         parentRepository.save(parentB);
 
     }
+
 
 }

@@ -1,15 +1,15 @@
 package com.task.payment.controller;
 
 import com.task.payment.dto.PaymentProcessingRequest;
+import com.task.payment.model.Parent;
 import com.task.payment.model.Payment;
 import com.task.payment.service.PaymentProcessingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/")
@@ -28,5 +28,20 @@ public class PaymentProcessingController {
         } catch (Exception e) {
             return new ResponseEntity<>("Error processing payment: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("parents")
+    public ResponseEntity<List<Parent>> getParentList() {
+        return paymentProcessingService.getParentList();
+    }
+
+    @GetMapping("payments/all")
+    public ResponseEntity<List<Payment>> getPaymentList() {
+        return paymentProcessingService.getPaymentList();
+    }
+
+    @GetMapping("/parent/{id}")
+    public ResponseEntity<Parent> getParentById(@PathVariable Long id) {
+       return paymentProcessingService.getParentById(id);
     }
 }
