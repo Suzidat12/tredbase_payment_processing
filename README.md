@@ -17,9 +17,9 @@ This Spring Boot application manages payments between parents and students, supp
 
 ---
 
-## 🚀 How to Build, Run, and Test
+##  How to Build, Run, and Test
 
-### 🛠️ Build the Project
+###  Build the Project
 
 Ensure you have:
 - Java 17+
